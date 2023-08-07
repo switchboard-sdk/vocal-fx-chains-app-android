@@ -1,13 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".ui.recording.RecordingFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/logo_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/start_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:text="To start recording press Start Recording button.\n\nTo listen to the beat without recording press Listen to Beat button.\n\nTo enable live monitoring plug in headphones.\n\nUse the Enable FX Chain switch to enable or disable FX during live monitoring.\n\nSwitch between the different FX Chains with the segmented control.\n\nAfter starting recording press Stop Recording to finish and jump to the FX Editing screen."
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Start Recording"
+        app:layout_constraintBottom_toTopOf="@+id/listen_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/listen_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Listen to Beat"
+        app:layout_constraintBottom_toTopOf="@+id/fx_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/fx_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable FX Chain"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/fx_selector_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fx_selector_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected FX Chain"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/toggle_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:checkedButton="@id/harmonizer_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/harmonizer_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Harmonizer" />
+
+        <Button
+            android:id="@+id/radio_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Radio" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <include
+        android:id="@+id/recording_loading_indicator"
+        layout="@layout/progress_bar_sticky" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

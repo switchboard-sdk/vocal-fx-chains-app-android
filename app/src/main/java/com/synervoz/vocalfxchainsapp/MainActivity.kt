@@ -12,7 +12,11 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.replace
+import com.synervoz.switchboard.sdk.SwitchboardSDK
+import com.synervoz.switchboardsuperpowered.SuperpoweredExtension
 import com.synervoz.vocalfxchainsapp.databinding.ActivityMainBinding
+import com.synervoz.vocalfxchainsapp.ui.recording.RecordingFragment
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -25,11 +29,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        SwitchboardSDK.initialize(Config.clientID, Config.clientSecret)
+        SuperpoweredExtension.initialize(Config.superpoweredLicenseKey)
+
         if (!requestPermission()) return
         if (savedInstanceState == null) {
             lifecycleScope.launch {
                 supportFragmentManager.commit {
-//                    replace<MenuFragment>(R.id.container)
+                    replace<RecordingFragment>(R.id.container)
                     setReorderingAllowed(true)
                 }
             }
@@ -85,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         if (hasAllPermissions) {
             lifecycleScope.launch {
                 supportFragmentManager.commit {
-//                    replace<MenuFragment>(R.id.container)
+                    replace<RecordingFragment>(R.id.container)
                     setReorderingAllowed(true)
                 }
             }

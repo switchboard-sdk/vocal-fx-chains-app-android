@@ -1,58 +1,58 @@
 package com.synervoz.vocalfxchainsapp.audio
 
+import com.synervoz.switchboardsuperpowered.audiographnodes.FilterNode
+import com.synervoz.switchboardsuperpowered.audiographnodes.GuitarDistortionNode
+import com.synervoz.switchboardsuperpowered.audiographnodes.ReverbNode
+import com.synervoz.vocalfxchainsapp.Config
+
 class RadioEffect : FXChain() {
-//    val bandpassFilterNode =
-//    let bandpassFilterNode = SBFilterNode()
-//    let distortionNode = SBGuitarDistortionNode()
-//    let reverbNode = SBReverbNode()
-//
-//    func setLowPreset() {
-//        bandpassFilterNode.isEnabled = true
-//        bandpassFilterNode.type = Bandlimited_Bandpass
-//        bandpassFilterNode.frequency = 3648.0
-//        bandpassFilterNode.octave = 0.7
-//
-//        reverbNode.isEnabled = true
-//        reverbNode.mix = 0.008
-//        reverbNode.width = 0.7
-//        reverbNode.damp = 0.5
-//        reverbNode.roomSize = 0.5
-//        reverbNode.predelayMs = 10.0
-//    }
-//
-//    func setHighPreset() {
-//        bandpassFilterNode.isEnabled = true
-//        bandpassFilterNode.type = Bandlimited_Bandpass
-//        bandpassFilterNode.frequency = 3648.0
-//        bandpassFilterNode.octave = 0.3
-//
-//        reverbNode.isEnabled = true
-//        reverbNode.mix = 0.015
-//        reverbNode.width = 0.7
-//        reverbNode.damp = 0.5
-//        reverbNode.roomSize = 0.75
-//        reverbNode.predelayMs = 10.0
-//    }
-//
-//    override init() {
-//        super.init()
-//
-//        switch Config.radioPreset {
-//            case 0:
-//            setLowPreset()
-//            default:
-//            setHighPreset()
-//        }
-//
-//        audioGraph.addNode(bandpassFilterNode)
-//        audioGraph.addNode(distortionNode)
-//        audioGraph.addNode(reverbNode)
-//
-//        audioGraph.connect(audioGraph.inputNode, to: bandpassFilterNode)
-//        audioGraph.connect(bandpassFilterNode, to: distortionNode)
-//        audioGraph.connect(distortionNode, to: reverbNode)
-//        audioGraph.connect(reverbNode, to: audioGraph.outputNode)
-//
-//        audioGraph.start()
-//    }
+    private val bandpassFilterNode = FilterNode()
+    private val distortionNode = GuitarDistortionNode()
+    private val reverbNode = ReverbNode()
+
+    fun setLowPreset() {
+        bandpassFilterNode.isEnabled = true
+        bandpassFilterNode.filterType = FilterNode.FilterType.Bandlimited_Bandpass
+        bandpassFilterNode.frequency = 3648.0f
+        bandpassFilterNode.octave = 0.7f
+
+        reverbNode.isEnabled = true
+        reverbNode.mix = 0.008f
+        reverbNode.width = 0.7f
+        reverbNode.damp = 0.5f
+        reverbNode.roomSize = 0.5f
+        reverbNode.predelayMs = 10.0f
+    }
+
+    fun setHighPreset() {
+        bandpassFilterNode.isEnabled = true
+        bandpassFilterNode.filterType = FilterNode.FilterType.Bandlimited_Bandpass
+        bandpassFilterNode.frequency = 3648.0f
+        bandpassFilterNode.octave = 0.3f
+
+        reverbNode.isEnabled = true
+        reverbNode.mix = 0.015f
+        reverbNode.width = 0.7f
+        reverbNode.damp = 0.5f
+        reverbNode.roomSize = 0.75f
+        reverbNode.predelayMs = 10.0f
+    }
+
+    init {
+        when (Config.radioPreset) {
+            0 -> setLowPreset()
+            else -> setHighPreset()
+        }
+
+        audioGraph.addNode(bandpassFilterNode)
+        audioGraph.addNode(distortionNode)
+        audioGraph.addNode(reverbNode)
+
+        audioGraph.connect(audioGraph.inputNode, bandpassFilterNode)
+        audioGraph.connect(bandpassFilterNode, distortionNode)
+        audioGraph.connect(distortionNode, reverbNode)
+        audioGraph.connect(reverbNode, audioGraph.outputNode)
+
+        audioGraph.start()
+    }
 }

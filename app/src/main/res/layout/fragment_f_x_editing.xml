@@ -1,13 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".ui.fxediting.FXEditingFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/logo_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/fx_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:text="Enable or disable the FX Chain on the vocals.\n\nSelect the current applied FX Chain.\n\nChange the current preset for the FX Chain.\n\nChange the individual volumes of the beat and vocals.\n\nListen to the mix by tapping Start Playback.\n\nExport your mix with the Export button."
+            android:textColor="@color/black"
+            android:textSize="17sp"/>
+    </ScrollView>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/fx_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable FX Chain"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/toggle_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:checkedButton="@id/harmonizer_button"
+        app:layout_constraintBottom_toTopOf="@+id/fx_preset_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/harmonizer_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Harmonizer" />
+
+        <Button
+            android:id="@+id/radio_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Radio" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/fx_preset_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FX Chain Preset"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/preset_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/preset_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:checkedButton="@id/low_button"
+        app:layout_constraintBottom_toTopOf="@+id/vocal_volume_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/low_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Low" />
+
+        <Button
+            android:id="@+id/high_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="High" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/vocal_volume_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-10dp"
+        android:text="Vocal Volume"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/vocal_slider"
+        app:layout_constraintStart_toStartOf="@+id/preset_button" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/vocal_slider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:value="1.0"
+        android:valueFrom="0.0"
+        android:valueTo="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/beat_slider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/beat_volume_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-10dp"
+        android:text="Beat Volume"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/beat_slider"
+        app:layout_constraintStart_toStartOf="@+id/preset_button" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/beat_slider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-5dp"
+        android:value="1.0"
+        android:valueFrom="0.0"
+        android:valueTo="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/start_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Start Playback"
+        app:layout_constraintBottom_toTopOf="@+id/export_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/export_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Export"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/fx_loading_indicator"
+        layout="@layout/progress_bar_sticky" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
