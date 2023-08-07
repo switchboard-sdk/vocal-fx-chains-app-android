@@ -1,3 +1,9 @@
+## Important Links
+
+[Find more info on the Vocal FX Chains App HERE](https://docs.switchboard.audio/docs/examples/vocal-fx-chains/)
+
+[Find more info on the Switchboard SDK HERE](https://docs.switchboard.audio/)
+
 ## Setup
 
 Before opening the project please run:
@@ -140,3 +146,9 @@ idBandpass-->idDistortion[GuitarDistortionNode]
 idDistortion-->idReverb[ReverbNode]
 idReverb-->idOutput(AudioGraph - OutputNode)
 ```
+
+## Important Links
+
+[Find more info on the Vocal FX Chains App HERE](https://docs.switchboard.audio/docs/examples/vocal-fx-chains/)
+
+[Find more info on the Switchboard SDK HERE](https://docs.switchboard.audio/)
