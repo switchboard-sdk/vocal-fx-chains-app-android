@@ -38,8 +38,6 @@ class FXEditingAudioSystem : AudioSystem() {
         selectFXChain()
         selectFXChainPreset()
 
-        audioEngine.performanceMode = PerformanceMode.LOW_LATENCY
-
         audioGraph.addNode(beatPlayerNode)
         audioGraph.addNode(beatGainNode)
         audioGraph.addNode(vocalPlayerNode)

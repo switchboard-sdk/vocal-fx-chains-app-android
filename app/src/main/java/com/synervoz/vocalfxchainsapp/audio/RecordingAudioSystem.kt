@@ -33,8 +33,6 @@ class RecordingAudioSystem : AudioSystem() {
         busSelectNode.selectedBus = if (applyFXChain) 0 else 1
         selectFXChain()
 
-        audioEngine.performanceMode = PerformanceMode.LOW_LATENCY
-
         audioGraph.addNode(inputSplitterNode)
         audioGraph.addNode(inputRecorderNode)
         audioGraph.addNode(fxChainNode)
