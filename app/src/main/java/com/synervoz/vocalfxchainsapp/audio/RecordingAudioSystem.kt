@@ -1,6 +1,5 @@
 package com.synervoz.vocalfxchainsapp.audio
 
-import com.synervoz.switchboard.sdk.Codec
 import com.synervoz.switchboard.sdk.audiographnodes.AudioPlayerNode
 import com.synervoz.switchboard.sdk.audiographnodes.BusSelectNode
 import com.synervoz.switchboard.sdk.audiographnodes.BusSplitterNode
@@ -8,7 +7,6 @@ import com.synervoz.switchboard.sdk.audiographnodes.MixerNode
 import com.synervoz.switchboard.sdk.audiographnodes.MuteNode
 import com.synervoz.switchboard.sdk.audiographnodes.RecorderNode
 import com.synervoz.switchboard.sdk.audiographnodes.SubgraphProcessorNode
-import com.synervoz.switchboard.sdk.utils.AssetLoader
 import com.synervoz.vocalfxchainsapp.Config
 
 class RecordingAudioSystem : AudioSystem() {
@@ -30,11 +28,7 @@ class RecordingAudioSystem : AudioSystem() {
             Config.applyFXChain = value
         }
 
-//    var delegate: RecordingAudioSystemDelegate?
-
     init {
-//        audioEngine.delegate = self
-
         busSelectNode.selectedBus = if (applyFXChain) 0 else 1
         selectFXChain()
 
@@ -58,9 +52,13 @@ class RecordingAudioSystem : AudioSystem() {
 
         beatPlayerNode.isLoopingEnabled = true
 
-        muteNode.isMuted = isSpeaker
+        muteNode.isMuted = true
 
         audioEngine.enableMicrophone(true)
+    }
+
+    fun enableLiveMonitoring(enable: Boolean) {
+        muteNode.isMuted = !enable
     }
 
     fun selectFXChain() {
@@ -92,8 +90,4 @@ class RecordingAudioSystem : AudioSystem() {
 
     val isBeatPlaying: Boolean
         get() = beatPlayerNode.isPlaying
-
-    val isSpeaker: Boolean
-        get() = true
-//        get() = audioEngine.currentOutputRoute == .builtInSpeaker || audioEngine.currentOutputRoute == .builtInReceiver
 }

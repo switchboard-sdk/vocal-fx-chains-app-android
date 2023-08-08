@@ -2,6 +2,8 @@ package com.synervoz.vocalfxchainsapp
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.media.AudioDeviceInfo
+import android.media.AudioManager
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.WindowManager
@@ -43,6 +45,15 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    val isHeadset: Boolean
+        get() {
+            val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+            return audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS).any {
+                it.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES || it.type == AudioDeviceInfo.TYPE_WIRED_HEADSET
+                        || it.type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP || it.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO
+            }
+        }
 
     fun pushFragment(fragment: Fragment) {
         supportFragmentManager.commit {

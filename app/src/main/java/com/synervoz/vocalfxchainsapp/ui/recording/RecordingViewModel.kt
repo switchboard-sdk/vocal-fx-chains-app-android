@@ -22,6 +22,7 @@ sealed class RecordingViewState : ViewState {
     data class Ready(
         val beatButtonEnabled: Boolean,
         val beatButtonTitle: String,
+        val recordingButtonEnabled: Boolean,
         val recordingButtonTitle: String,
         val fxSwitchChecked: Boolean,
         val fxSelectedIdx: Int
@@ -44,6 +45,7 @@ class RecordingViewModel(
             emitViewState(RecordingViewState.Ready(
                 beatButtonEnabled = true,
                 beatButtonTitle = "Listen to Beat",
+                recordingButtonEnabled = true,
                 recordingButtonTitle = "Start Recording",
                 fxSwitchChecked = audioSystem.applyFXChain,
                 fxSelectedIdx = Config.selectedFXChainIndex
@@ -70,6 +72,7 @@ class RecordingViewModel(
                 emitViewState(RecordingViewState.Ready(
                     beatButtonEnabled = false,
                     beatButtonTitle = "Listen to Beat",
+                    recordingButtonEnabled = true,
                     recordingButtonTitle = "Stop Recording",
                     fxSwitchChecked = audioSystem.applyFXChain,
                     fxSelectedIdx = Config.selectedFXChainIndex
@@ -86,6 +89,7 @@ class RecordingViewModel(
                 emitViewState(RecordingViewState.Ready(
                     beatButtonEnabled = true,
                     beatButtonTitle = "Listen to Beat",
+                    recordingButtonEnabled = true,
                     recordingButtonTitle = "Start Recording",
                     fxSwitchChecked = audioSystem.applyFXChain,
                     fxSelectedIdx = Config.selectedFXChainIndex
@@ -98,6 +102,7 @@ class RecordingViewModel(
                 emitViewState(RecordingViewState.Ready(
                     beatButtonEnabled = true,
                     beatButtonTitle = "Stop Beat",
+                    recordingButtonEnabled = false,
                     recordingButtonTitle = "Start Recording",
                     fxSwitchChecked = audioSystem.applyFXChain,
                     fxSelectedIdx = Config.selectedFXChainIndex
@@ -113,6 +118,10 @@ class RecordingViewModel(
     fun selectFXChain(index: Int) {
         Config.selectedFXChainIndex = index
         audioSystem.selectFXChain()
+    }
+
+    fun enableLiveMonitoring(enable: Boolean) {
+        audioSystem.enableLiveMonitoring(enable)
     }
 
     companion object {

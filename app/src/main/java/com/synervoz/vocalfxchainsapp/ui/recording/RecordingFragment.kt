@@ -8,6 +8,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.replace
 import com.synervoz.vocalfxchainsapp.Config
+import com.synervoz.vocalfxchainsapp.MainActivity
 import com.synervoz.vocalfxchainsapp.R
 import com.synervoz.vocalfxchainsapp.databinding.FragmentRecordingBinding
 import com.synervoz.vocalfxchainsapp.ui.common.BaseFragment
@@ -59,6 +60,7 @@ class RecordingFragment : BaseFragment<FragmentRecordingBinding, RecordingViewSt
             }
         }
 
+        viewModel.enableLiveMonitoring((requireActivity() as MainActivity).isHeadset)
         viewModel.startAudioSystem(requireContext())
     }
 
@@ -88,6 +90,7 @@ class RecordingFragment : BaseFragment<FragmentRecordingBinding, RecordingViewSt
         loading = false
         binding.listenButton.isEnabled = viewState.beatButtonEnabled
         binding.listenButton.text = viewState.beatButtonTitle
+        binding.startButton.isEnabled = viewState.recordingButtonEnabled
         binding.startButton.text = viewState.recordingButtonTitle
         binding.fxSwitch.isChecked = viewState.fxSwitchChecked
         binding.toggleButton.check(if (viewState.fxSelectedIdx == 0) R.id.harmonizer_button else R.id.radio_button)
