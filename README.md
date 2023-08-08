@@ -1,8 +1,8 @@
 ## Important Links
 
-[Find more info on the Vocal FX Chains App HERE](https://docs.switchboard.audio/docs/examples/vocal-fx-chains/)
+<a href="https://docs.switchboard.audio/docs/examples/vocal-fx-chains/" target="_blank">Find more info on the Vocal FX Chains App HERE</a>
 
-[Find more info on the Switchboard SDK HERE](https://docs.switchboard.audio/)
+<a href="https://docs.switchboard.audio/" target="_blank">Find more info on the Switchboard SDK HERE</a>
 
 ## Setup
 
@@ -149,6 +149,6 @@ idReverb-->idOutput(AudioGraph - OutputNode)
 
 ## Important Links
 
-[Find more info on the Vocal FX Chains App HERE](https://docs.switchboard.audio/docs/examples/vocal-fx-chains/)
+<a href="https://docs.switchboard.audio/docs/examples/vocal-fx-chains/" target="_blank">Find more info on the Vocal FX Chains App HERE</a>
 
-[Find more info on the Switchboard SDK HERE](https://docs.switchboard.audio/)
+<a href="https://docs.switchboard.audio/" target="_blank">Find more info on the Switchboard SDK HERE</a>
