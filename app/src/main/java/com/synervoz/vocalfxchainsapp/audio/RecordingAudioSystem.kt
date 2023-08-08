@@ -1,5 +1,6 @@
 package com.synervoz.vocalfxchainsapp.audio
 
+import com.synervoz.switchboard.sdk.audioengine.PerformanceMode
 import com.synervoz.switchboard.sdk.audiographnodes.AudioPlayerNode
 import com.synervoz.switchboard.sdk.audiographnodes.BusSelectNode
 import com.synervoz.switchboard.sdk.audiographnodes.BusSplitterNode
@@ -31,6 +32,8 @@ class RecordingAudioSystem : AudioSystem() {
     init {
         busSelectNode.selectedBus = if (applyFXChain) 0 else 1
         selectFXChain()
+
+        audioEngine.performanceMode = PerformanceMode.LOW_LATENCY
 
         audioGraph.addNode(inputSplitterNode)
         audioGraph.addNode(inputRecorderNode)
