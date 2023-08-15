@@ -3,13 +3,13 @@ package com.synervoz.vocalfxchainsapp.audio
 import com.synervoz.switchboard.sdk.audiographnodes.BusSplitterNode
 import com.synervoz.switchboard.sdk.audiographnodes.GainNode
 import com.synervoz.switchboard.sdk.audiographnodes.MixerNode
-import com.synervoz.switchboardsuperpowered.audiographnodes.AutotuneNode
+import com.synervoz.switchboardsuperpowered.audiographnodes.AutomaticVocalPitchCorrectionNode
 import com.synervoz.switchboardsuperpowered.audiographnodes.PitchShiftNode
 import com.synervoz.switchboardsuperpowered.audiographnodes.ReverbNode
 import com.synervoz.vocalfxchainsapp.Config
 
 class HarmonizerEffect : FXChain() {
-    private val avpcNode = AutotuneNode()
+    private val avpcNode = AutomaticVocalPitchCorrectionNode()
     private val busSplitterNode = BusSplitterNode()
     private val lowPitchShiftNode = PitchShiftNode()
     private val lowPitchShiftGainNode = GainNode()
@@ -20,9 +20,9 @@ class HarmonizerEffect : FXChain() {
 
     fun setLowPreset() {
         avpcNode.isEnabled = true
-        avpcNode.speed = AutotuneNode.TunerSpeed.MEDIUM
-        avpcNode.range = AutotuneNode.TunerRange.WIDE
-        avpcNode.scale = AutotuneNode.TunerScale.CMAJOR
+        avpcNode.speed = AutomaticVocalPitchCorrectionNode.TunerSpeed.MEDIUM
+        avpcNode.range = AutomaticVocalPitchCorrectionNode.TunerRange.WIDE
+        avpcNode.scale = AutomaticVocalPitchCorrectionNode.TunerScale.CMAJOR
 
         lowPitchShiftNode.isEnabled = true
         lowPitchShiftNode.pitchShiftCents = -400
@@ -42,9 +42,9 @@ class HarmonizerEffect : FXChain() {
 
     fun setHighPreset() {
         avpcNode.isEnabled = true
-        avpcNode.speed = AutotuneNode.TunerSpeed.EXTREME
-        avpcNode.range = AutotuneNode.TunerRange.WIDE
-        avpcNode.scale = AutotuneNode.TunerScale.CMAJOR
+        avpcNode.speed = AutomaticVocalPitchCorrectionNode.TunerSpeed.EXTREME
+        avpcNode.range = AutomaticVocalPitchCorrectionNode.TunerRange.WIDE
+        avpcNode.scale = AutomaticVocalPitchCorrectionNode.TunerScale.CMAJOR
 
         lowPitchShiftNode.isEnabled = true
         lowPitchShiftNode.pitchShiftCents = -400
