@@ -145,12 +145,14 @@ class FXEditingViewModel(
     }
 
     companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                FXEditingViewModel(
-                    audioSystem = FXEditingAudioSystem(),
-                    savedStateHandle = createSavedStateHandle()
-                )
+        fun createFactory(context: Context): ViewModelProvider.Factory {
+            return viewModelFactory {
+                initializer {
+                    FXEditingViewModel(
+                        audioSystem = FXEditingAudioSystem(context),
+                        savedStateHandle = createSavedStateHandle()
+                    )
+                }
             }
         }
     }

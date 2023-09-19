@@ -1,5 +1,6 @@
 package com.synervoz.vocalfxchainsapp.audio
 
+import android.content.Context
 import com.synervoz.switchboard.sdk.audioengine.PerformanceMode
 import com.synervoz.switchboard.sdk.audiographnodes.AudioPlayerNode
 import com.synervoz.switchboard.sdk.audiographnodes.BusSelectNode
@@ -10,7 +11,7 @@ import com.synervoz.switchboard.sdk.audiographnodes.RecorderNode
 import com.synervoz.switchboard.sdk.audiographnodes.SubgraphProcessorNode
 import com.synervoz.vocalfxchainsapp.Config
 
-class RecordingAudioSystem : AudioSystem() {
+class RecordingAudioSystem(context: Context) : AudioSystem(context) {
     val inputSplitterNode = BusSplitterNode()
     val inputRecorderNode = RecorderNode()
     val fxChainNode = SubgraphProcessorNode()
@@ -55,7 +56,7 @@ class RecordingAudioSystem : AudioSystem() {
 
         muteNode.isMuted = true
 
-        audioEngine.enableMicrophone(true)
+        audioEngine.microphoneEnabled = true
     }
 
     fun enableLiveMonitoring(enable: Boolean) {
