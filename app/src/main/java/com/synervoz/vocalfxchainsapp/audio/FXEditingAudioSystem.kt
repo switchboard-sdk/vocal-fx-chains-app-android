@@ -1,5 +1,6 @@
 package com.synervoz.vocalfxchainsapp.audio
 
+import android.content.Context
 import com.synervoz.switchboard.sdk.audioengine.PerformanceMode
 import com.synervoz.switchboard.sdk.audiograph.OfflineGraphRenderer
 import com.synervoz.switchboard.sdk.audiographnodes.AudioPlayerNode
@@ -11,7 +12,7 @@ import com.synervoz.switchboard.sdk.audiographnodes.SubgraphProcessorNode
 import com.synervoz.vocalfxchainsapp.Config
 import kotlin.math.max
 
-class FXEditingAudioSystem : AudioSystem() {
+class FXEditingAudioSystem(context: Context) : AudioSystem(context) {
     val beatPlayerNode = AudioPlayerNode()
     val beatGainNode = GainNode()
     val vocalPlayerNode = AudioPlayerNode()
@@ -60,7 +61,7 @@ class FXEditingAudioSystem : AudioSystem() {
         beatPlayerNode.isLoopingEnabled = true
         vocalPlayerNode.isLoopingEnabled = true
 
-        audioEngine.enableMicrophone(false)
+        audioEngine.microphoneEnabled = false
     }
 
     fun selectFXChain() {

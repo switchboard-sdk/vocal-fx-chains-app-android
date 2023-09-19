@@ -125,12 +125,14 @@ class RecordingViewModel(
     }
 
     companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                RecordingViewModel(
-                    audioSystem = RecordingAudioSystem(),
-                    savedStateHandle = createSavedStateHandle()
-                )
+        fun createFactory(context: Context): ViewModelProvider.Factory {
+            return viewModelFactory {
+                initializer {
+                    RecordingViewModel(
+                        audioSystem = RecordingAudioSystem(context),
+                        savedStateHandle = createSavedStateHandle()
+                    )
+                }
             }
         }
     }

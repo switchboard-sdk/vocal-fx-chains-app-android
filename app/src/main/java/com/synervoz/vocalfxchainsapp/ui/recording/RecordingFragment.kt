@@ -22,7 +22,7 @@ class RecordingFragment : BaseFragment<FragmentRecordingBinding, RecordingViewSt
         const val TAG = "RecordingFragment"
     }
 
-    override val viewModel: RecordingViewModel by viewModels { RecordingViewModel.Factory }
+    override val viewModel: RecordingViewModel by viewModels { RecordingViewModel.createFactory(requireContext()) }
 
     override var loading: Boolean = false
         set(value) {

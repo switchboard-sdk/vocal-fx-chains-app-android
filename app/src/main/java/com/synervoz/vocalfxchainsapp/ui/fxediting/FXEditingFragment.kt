@@ -25,7 +25,7 @@ class FXEditingFragment : BaseFragment<FragmentFXEditingBinding, FXEditingViewSt
         const val TAG = "FXEditingFragment"
     }
 
-    override val viewModel: FXEditingViewModel by viewModels { FXEditingViewModel.Factory }
+    override val viewModel: FXEditingViewModel by viewModels { FXEditingViewModel.createFactory(requireContext()) }
 
     override var loading: Boolean = false
         set(value) {
