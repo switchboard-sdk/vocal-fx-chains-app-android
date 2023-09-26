@@ -1,7 +1,6 @@
 package com.synervoz.vocalfxchainsapp.audio
 
 import android.content.Context
-import com.synervoz.switchboard.sdk.audioengine.PerformanceMode
 import com.synervoz.switchboard.sdk.audiograph.OfflineGraphRenderer
 import com.synervoz.switchboard.sdk.audiographnodes.AudioPlayerNode
 import com.synervoz.switchboard.sdk.audiographnodes.BusSelectNode
@@ -111,5 +110,7 @@ class FXEditingAudioSystem(context: Context) : AudioSystem(context) {
         startPlayback()
         offlineGraphRenderer.processGraph(audioGraph, Config.finalMixRecordingFile, Config.recordingFormat)
         stopPlayback()
+
+        start()
     }
 }

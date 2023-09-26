@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.replace
-import com.synervoz.vocalfxchainsapp.Config
 import com.synervoz.vocalfxchainsapp.MainActivity
 import com.synervoz.vocalfxchainsapp.R
 import com.synervoz.vocalfxchainsapp.databinding.FragmentRecordingBinding
@@ -99,6 +98,8 @@ class RecordingFragment : BaseFragment<FragmentRecordingBinding, RecordingViewSt
     private fun navigateToFXEditing() {
         requireActivity().supportFragmentManager.commit {
             replace<FXEditingFragment>(R.id.container)
+            setReorderingAllowed(true)
+            addToBackStack(FXEditingFragment.TAG)
         }
     }
 }

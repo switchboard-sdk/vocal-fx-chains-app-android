@@ -55,14 +55,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    fun pushFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            add(R.id.container, fragment)
-            setReorderingAllowed(true)
-            addToBackStack(fragment.javaClass.name)
-        }
-    }
-
     private fun requestPermission(): Boolean {
         val permissions = arrayOf(
             Manifest.permission.RECORD_AUDIO,
@@ -118,9 +110,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onBackPressed() {
-        supportFragmentManager.popBackStack()
     }
 }

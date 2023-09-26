@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:padding="20dp"
     tools:context=".ui.fxediting.FXEditingFragment">
 
@@ -34,7 +35,7 @@
             android:singleLine="false"
             android:text="Enable or disable the FX Chain on the vocals.\n\nSelect the current applied FX Chain.\n\nChange the current preset for the FX Chain.\n\nChange the individual volumes of the beat and vocals.\n\nListen to the mix by tapping Start Playback.\n\nExport your mix with the Export button."
             android:textColor="@color/black"
-            android:textSize="17sp"/>
+            android:textSize="17sp" />
     </ScrollView>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
