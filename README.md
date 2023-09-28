@@ -6,6 +6,8 @@
 
 <a href="https://docs.switchboard.audio/" target="_blank">Find more info on the Switchboard SDK HERE</a>
 
+ <a href="https://youtu.be/i3lkK4nZrD0" target="_blank">YouTube Demo Video</a> 
+
 ## Setup
 
 Before opening the project please run:
